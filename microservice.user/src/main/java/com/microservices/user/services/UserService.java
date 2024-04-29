@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements  IUserService {
@@ -21,10 +22,12 @@ public class UserService implements  IUserService {
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id);
+        Optional<User> optionalUser = userRepository.findById(id);
+        return optionalUser.orElse(null);
     }
 
     @Override
+
     @Transactional
     public void save(User user) {
         userRepository.save(user);
