@@ -11,5 +11,5 @@ import java.util.List;
 public interface IUserClientFeign {
 
     @GetMapping("/search-by-role/{id}")
-    List<UserDTO> getUsersByRol (@PathVariable Long id);
+    List<UserDTO> getUsersByRol(@PathVariable Long id);
 }

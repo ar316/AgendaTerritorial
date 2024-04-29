@@ -28,8 +28,8 @@ public class RoleController {
     }
 
     @GetMapping("/search-by-roleId/{id}")
-    public ResponseEntity<?> searchByRol(@PathVariable Long roleId){
-        return ResponseEntity.ok(roleService.finUsersByRol(roleId)) ;
+    public ResponseEntity<?> searchByRol(@PathVariable Long id){
+        return ResponseEntity.ok(roleService.finUsersByRol(id)) ;
     }
 
 

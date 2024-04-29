@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/search-by-role/{id}")
-    public ResponseEntity<?> findByIdRole(@PathVariable Long id){
+    public ResponseEntity<?> getUsersByRol(@PathVariable Long id){
         return  ResponseEntity.ok(userService.findByRolId(id));
     }
 
