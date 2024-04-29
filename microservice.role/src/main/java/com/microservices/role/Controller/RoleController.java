@@ -2,7 +2,7 @@ package com.microservices.role.Controller;
 
 
 import com.microservices.role.entities.Role;
-import com.microservices.role.http.response.UserByRole;
+
 import com.microservices.role.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
