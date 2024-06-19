@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice.eureka" />
+        <module name="microservices.agenda" />
         <module name="microservice.config" />
         <module name="microservice.user" />
         <module name="microservice.role" />
