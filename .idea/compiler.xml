@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice.eureka" />
+        <module name="microservices.agenda" />
         <module name="microservice.config" />
         <module name="microservice.user" />
         <module name="microservice.role" />
@@ -22,6 +23,7 @@
       <module name="microservice.gateway" options="-parameters" />
       <module name="microservice.role" options="-parameters" />
       <module name="microservice.user" options="-parameters" />
+      <module name="microservices.agenda" options="-parameters" />
     </option>
   </component>
 </project>
