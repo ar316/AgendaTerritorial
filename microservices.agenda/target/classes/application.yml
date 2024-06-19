@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: msvc-user
+  config:
+    import: optional:configserver:http://localhost:8888
+# Msql Connection
+  datasource:
+    url: jdbc:mysql://localhost:3307/users?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrival=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: create
+      database: mysql
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+
+
+# Mostrar consultas
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+server:
+  port: 8090
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
