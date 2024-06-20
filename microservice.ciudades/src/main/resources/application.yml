@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: msvc-ciudades
+  config:
+    import: optional:configserver:http://localhost:8888
+# PostgreSQL Connection
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ciudades
+    username: postgres
+    password: postgres1627
+  
+# Mostrar consultas
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+server:
+  port: 8091
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

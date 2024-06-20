@@ -26,6 +26,9 @@
     <module> microservice.config</module>
     <module>microservice.user</module>
     <module>microservice.role</module>
+    <module>microservice.ciudades</module>
+    <module>microservice.tematica</module>
+    <module>microservice.compromiso</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
