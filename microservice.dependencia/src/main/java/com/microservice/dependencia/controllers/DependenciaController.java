@@ -1,7 +1,7 @@
 /**
- * ComunaController.java
+ * DependenciaController.java
  */
-package com.microservice.ciudades.controllers;
+package com.microservice.dependencia.controllers;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.ciudades.dto.inputs.ComunaInDTO;
-import com.microservice.ciudades.dto.outputs.ComunaDTO;
-import com.microservice.ciudades.dto.outputs.ResponseDTO;
-import com.microservice.ciudades.service.interf.ComunaService;
-import com.microservice.ciudades.utils.MessageUtil;
+import com.microservice.dependencia.dto.inputs.DependenciaInDTO;
+import com.microservice.dependencia.dto.outputs.DependenciaDTO;
+import com.microservice.dependencia.dto.outputs.ResponseDTO;
+import com.microservice.dependencia.service.interf.DependenciaService;
+import com.microservice.dependencia.utils.MessageUtil;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -30,20 +30,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 /**
- * <b>Descripción:<b> Clase que determina los servicios disponibles para Comuna
+ * <b>Descripción:<b> Clase que determina los servicios disponibles para
+ * Dependencia
  * 
  * @author CRISTIAN IC <cristianwic@gmail.com>
  * @version 1.0
  */
-@Tag(name = "Comunas", description = "Servicios disponibles para comunas")
+@Tag(name = "Dependencias", description = "Servicios disponibles para dependencias")
 @Log4j2
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/api/v1/comunas")
-public class ComunaController {
+@RequestMapping(path = "/api/v1/dependencias")
+public class DependenciaController {
 
-	private final ComunaService comunaService;
+	private final DependenciaService dependenciaService;
 
 	/**
 	 * 
@@ -51,13 +52,13 @@ public class ComunaController {
 	 * 
 	 * @author CRISTIAN IC <cristianwic@gmail.com>
 	 * 
-	 * @param inDTO ComunaInDTO
+	 * @param inDTO DependenciaInDTO
 	 * @return ResponseDTO<String>
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseDTO<String>> save(@Valid @RequestBody(required = true) ComunaInDTO inDTO) {
+	public ResponseEntity<ResponseDTO<String>> save(@Valid @RequestBody(required = true) DependenciaInDTO inDTO) {
 		log.debug("Inicio metodo: save");
-		this.comunaService.save(inDTO);
+		this.dependenciaService.save(inDTO);
 		HttpStatus httpStatus = HttpStatus.CREATED;
 		ResponseDTO<String> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
 				MessageUtil.OPERATION_SUCCESSFULLY);
@@ -71,15 +72,16 @@ public class ComunaController {
 	 * 
 	 * @author CRISTIAN IC <cristianwic@gmail.com>
 	 * 
-	 * @param inDTO ComunaInDTO
-	 * @return ResponseDTO<ComunaDTO>
+	 * @param inDTO DependenciaInDTO
+	 * @return ResponseDTO<DependenciaDTO>
 	 */
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseDTO<ComunaDTO>> update(@Valid @RequestBody(required = true) ComunaInDTO inDTO) {
+	public ResponseEntity<ResponseDTO<DependenciaDTO>> update(
+			@Valid @RequestBody(required = true) DependenciaInDTO inDTO) {
 		log.debug("Inicio metodo: update");
 		HttpStatus httpStatus = HttpStatus.OK;
-		ComunaDTO dto = this.comunaService.update(inDTO);
-		ResponseDTO<ComunaDTO> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
+		DependenciaDTO dto = this.dependenciaService.update(inDTO);
+		ResponseDTO<DependenciaDTO> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
 				MessageUtil.OPERATION_SUCCESSFULLY, dto);
 		log.debug("Fin metodo: update");
 		return new ResponseEntity<>(responseDTO, httpStatus);
@@ -93,14 +95,15 @@ public class ComunaController {
 	 * @author CRISTIAN IC <cristianwic@gmail.com>
 	 * 
 	 * @param id identificador del registro
-	 * @return ResponseDTO<ComunaDTO>
+	 * @return ResponseDTO<DependenciaDTO>
 	 */
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseDTO<ComunaDTO>> getById(@PathVariable(value = "id", required = true) Integer id) {
+	public ResponseEntity<ResponseDTO<DependenciaDTO>> getById(
+			@PathVariable(value = "id", required = true) Integer id) {
 		log.debug("Inicio metodo: getById");
-		ComunaDTO dto = this.comunaService.getById(id);
+		DependenciaDTO dto = this.dependenciaService.getById(id);
 		HttpStatus httpStatus = HttpStatus.OK;
-		ResponseDTO<ComunaDTO> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
+		ResponseDTO<DependenciaDTO> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
 				MessageUtil.OPERATION_SUCCESSFULLY, dto);
 		log.debug("Fin metodo: getById");
 		return new ResponseEntity<>(responseDTO, httpStatus);
@@ -118,14 +121,14 @@ public class ComunaController {
 	@DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO<Boolean>> delete(@PathVariable(value = "id", required = true) Integer id) {
 		log.debug("Inicio metodo: delete");
-		this.comunaService.delete(id);
+		this.dependenciaService.delete(id);
 		HttpStatus httpStatus = HttpStatus.OK;
 		ResponseDTO<Boolean> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
 				MessageUtil.OPERATION_SUCCESSFULLY);
 		log.debug("Fin metodo: delete");
 		return new ResponseEntity<>(responseDTO, httpStatus);
 	}
-	
+
 	/**
 	 * 
 	 * Método encargado de exponer el servicio para obtener todos los registros
@@ -133,14 +136,14 @@ public class ComunaController {
 	 * @author CRISTIAN IC <cristianwic@gmail.com>
 	 * 
 	 * @param id identificador del registro
-	 * @return ResponseDTO<List<ComunaDTO>>
+	 * @return ResponseDTO<List<DependenciaDTO>>
 	 */
 	@GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseDTO<List<ComunaDTO>>> getAll() {
+	public ResponseEntity<ResponseDTO<List<DependenciaDTO>>> getAll() {
 		log.debug("Inicio metodo: delete");
-		List<ComunaDTO> lista = this.comunaService.getAll();
+		List<DependenciaDTO> lista = this.dependenciaService.getAll();
 		HttpStatus httpStatus = HttpStatus.OK;
-		ResponseDTO<List<ComunaDTO>> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
+		ResponseDTO<List<DependenciaDTO>> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
 				MessageUtil.OPERATION_SUCCESSFULLY, lista);
 		log.debug("Fin metodo: delete");
 		return new ResponseEntity<>(responseDTO, httpStatus);

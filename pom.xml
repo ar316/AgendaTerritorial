@@ -28,7 +28,7 @@
     <module>microservice.role</module>
     <module>microservice.ciudades</module>
     <module>microservice.tematica</module>
-    <module>microservice.compromiso</module>
+    <module>microservice.dependencia</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

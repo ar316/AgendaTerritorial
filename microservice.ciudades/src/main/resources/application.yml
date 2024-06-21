@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ciudades
     username: postgres
-    password: postgres1627
+    password: postgres1234
   
 # Mostrar consultas
 logging:

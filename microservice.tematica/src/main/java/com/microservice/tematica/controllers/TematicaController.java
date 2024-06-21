@@ -3,6 +3,8 @@
  */
 package com.microservice.tematica.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -121,6 +123,26 @@ public class TematicaController {
 		HttpStatus httpStatus = HttpStatus.OK;
 		ResponseDTO<Boolean> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
 				MessageUtil.OPERATION_SUCCESSFULLY);
+		log.debug("Fin metodo: delete");
+		return new ResponseEntity<>(responseDTO, httpStatus);
+	}
+
+	/**
+	 * 
+	 * Método encargado de exponer el servicio para obtener todos los registros
+	 * 
+	 * @author CRISTIAN IC <cristianwic@gmail.com>
+	 * 
+	 * @param id identificador del registro
+	 * @return ResponseDTO<List<TematicaDTO>>
+	 */
+	@GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseDTO<List<TematicaDTO>>> getAll() {
+		log.debug("Inicio metodo: delete");
+		List<TematicaDTO> lista = this.tematicaService.getAll();
+		HttpStatus httpStatus = HttpStatus.OK;
+		ResponseDTO<List<TematicaDTO>> responseDTO = new ResponseDTO<>(Boolean.TRUE, httpStatus,
+				MessageUtil.OPERATION_SUCCESSFULLY, lista);
 		log.debug("Fin metodo: delete");
 		return new ResponseEntity<>(responseDTO, httpStatus);
 	}
